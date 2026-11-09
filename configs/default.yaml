@@ -1,0 +1,44 @@
+seed: 2026
+data_dir: data
+results_dir: results
+
+audio:
+  fs: 48000
+  duration_s: 1.0
+  level_range_db: [30.0, 90.0]
+
+features:
+  n_fft: 4096
+  hop_length: 2400
+  n_mels: 128
+  f_min: 20.0
+  f_max: 16000.0
+
+splits:
+  train: 12000
+  val: 1500
+  test: 1500
+  ood: 1000
+
+families:
+  in_distribution:
+    - pure_tone
+    - harmonic_complex
+    - white_noise
+    - colored_noise
+    - bandpass_noise
+    - tone_in_noise
+  out_of_distribution:
+    - am_tone
+
+model:
+  channels: [24, 48, 96]
+  hidden: 256
+  dropout: 0.2
+
+training:
+  epochs: 30
+  batch_size: 64
+  lr: 0.002
+  weight_decay: 0.0001
+  patience: 8
